@@ -6,7 +6,11 @@
 
     @foreach($articles as $article)
         <div class="border-t border-gray-300 my-1 p-2">
-            <h2 class="font-bold text-lg">{{ $article->title }}</h2>
+            <h2 class="font-bold text-lg">
+                <a href="{{ route('articles.show', $article) }}">
+                    {{ $article->title }}
+                </a>
+            </h2>
             <p>
                 {{ $article->created_at }} 由 {{ $article->user->name }} 分享
             </p>

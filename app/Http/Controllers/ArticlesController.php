@@ -9,12 +9,17 @@ use Illuminate\Support\Facades\Auth;
 class ArticlesController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     public function index() {
-        $articles = Article::paginate(3);
+        $articles = Article::orderBy('id', 'desc')->paginate(10);
         return view('articles.index', ['articles' => $articles]);
+    }
+
+    public function show($id) {
+        $article = Article::find($id);
+        return view('articles.show', ['article' => $article]);
     }
 
     public function create() {
