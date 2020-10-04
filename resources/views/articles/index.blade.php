@@ -10,6 +10,8 @@
             <p>
                 {{ $article->created_at }} 由 {{ $article->user->name }} 分享
             </p>
+            <a href="{{ route('articles.edit', $article) }}">編輯</a>
         </div>
     @endforeach
+    {{ $articles->links() }}
 @endsection
